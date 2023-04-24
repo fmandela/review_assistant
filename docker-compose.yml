@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  review_assistant:
+    container_name: review_assistant
+    build: .
+    ports:
+     - ${PORT}:${PORT}
+    env_file:
+      - .env
+    environment:
+      PORT: ${PORT}
+      SECRET_KEY: ${SECRET_KEY}
+      PUBLIC_KEY: ${PUBLIC_KEY}
+      MONGO_DB: ${MONGO_DB}
+      MONGO_URL: ${MONGO_URL}
+      ENV: ${ENV}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+
+    expose:
+      - ${PORT}
+
+    networks:
+      - network
+
+    volumes:
+      - .:/app
+
+
+volumes:
+  db:
+    driver: local
+  api:
+    driver: ./src:/src
+
+
+    
+networks:
+  # Declare our private network.  We must declare one for the magic
+  # Docker DNS to work, but otherwise its default settings are fine.
+  network: {}

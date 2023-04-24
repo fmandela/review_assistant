@@ -1,0 +1,11 @@
+flask
+gunicorn
+pymongo
+python-dotenv
+pyjwt
+flask-swagger
+flask-swagger-ui
+pyyaml
+email-validator
+flask-caching
+openai
